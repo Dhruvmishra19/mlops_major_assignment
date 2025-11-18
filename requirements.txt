@@ -1,4 +1,7 @@
-cat > requirements.txt <<'EOF'
 scikit-learn
+numpy
 joblib
-EOF
+flask
+pillow
+gunicorn
+
