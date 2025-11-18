@@ -1,25 +1,26 @@
-name: CI - Train and Test
+name: CI - Train and Test Model
 
 on:
   push:
     branches: [ dev ]
+  workflow_dispatch:
 
 jobs:
-  run-training-and-testing:
+  train-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: '3.10'
 
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Train model
@@ -27,32 +28,4 @@ jobs:
 
       - name: Test model
         run: python test.py
-name: CI - Train and Test
 
-on:
-  push:
-    branches: [ dev ]
-
-jobs:
-  run-training-and-testing:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Train model
-        run: python train.py
-
-      - name: Test model
-        run: python test.py
